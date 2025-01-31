@@ -1,0 +1,37 @@
+ECE 695 - Lab 1 
+Select application: 
+  1 - CPU SAXPY 
+  2 - GPU SAXPY 
+  3 - CPU Monte-Carlo Pi 
+  4 - GPU Monte-Carlo Pi 
+==2277631== NVPROF is profiling process 2277631, command: ./lab1
+
+Choice selected - 4
+
+Running Monte-Carlo Pi Estimation on GPU! 
+
+Sneaky, you are ...
+Compute pi, you must!
+Estimated Pi = 3.14221
+It took 0.0973374 seconds.
+
+ ... Done!
+==2277631== Profiling application: ./lab1
+==2277631== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   98.61%  687.29us         1  687.29us  687.29us  687.29us  generatePoints(unsigned long*, unsigned long, unsigned long)
+                    1.08%  7.5200us         1  7.5200us  7.5200us  7.5200us  reduceCounts(unsigned long*, unsigned long*, unsigned long, unsigned long)
+                    0.31%  2.1440us         1  2.1440us  2.1440us  2.1440us  [CUDA memcpy DtoH]
+      API calls:   92.60%  90.020ms         2  45.010ms  3.2490us  90.017ms  cudaMalloc
+                    6.64%  6.4522ms         2  3.2261ms  7.4300us  6.4448ms  cudaLaunchKernel
+                    0.46%  446.77us         1  446.77us  446.77us  446.77us  cudaMemcpy
+                    0.14%  138.68us       114  1.2160us      91ns  57.164us  cuDeviceGetAttribute
+                    0.13%  126.10us         2  63.049us  6.5740us  119.53us  cudaFree
+                    0.02%  18.145us         1  18.145us  18.145us  18.145us  cuDeviceGetName
+                    0.01%  6.3190us         1  6.3190us  6.3190us  6.3190us  cuDeviceGetPCIBusId
+                    0.00%  1.0410us         3     347ns     113ns     751ns  cuDeviceGetCount
+                    0.00%     730ns         2     365ns     109ns     621ns  cuDeviceGet
+                    0.00%     392ns         1     392ns     392ns     392ns  cuModuleGetLoadingMode
+                    0.00%     349ns         1     349ns     349ns     349ns  cuDeviceTotalMem
+                    0.00%     282ns         1     282ns     282ns     282ns  cudaGetDeviceCount
+                    0.00%     159ns         1     159ns     159ns     159ns  cuDeviceGetUuid

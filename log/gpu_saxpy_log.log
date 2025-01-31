@@ -1,0 +1,7 @@
+ECE 695 - Lab 1 
+Select application: 
+  1 - CPU SAXPY 
+  2 - GPU SAXPY 
+  3 - CPU Monte-Carlo Pi 
+  4 - GPU Monte-Carlo Pi 
+======== Error: Application received signal 2

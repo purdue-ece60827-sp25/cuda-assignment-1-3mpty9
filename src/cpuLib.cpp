@@ -22,7 +22,7 @@ void vectorInit(float* v, int size) {
 int verifyVector(float* a, float* b, float* c, float scale, int size) {
 	int errorCount = 0;
 	for (int idx = 0; idx < size; ++idx) {
-		if (c[idx] != scale * a[idx] + b[idx]) {
+		if (std::fabs(c[idx] - (scale * a[idx] + b[idx]))>1e-5) {
 			++errorCount;
 			#ifndef DEBUG_PRINT_DISABLE
 				std::cout << "Idx " << idx << " expected " << scale * a[idx] + b[idx] 

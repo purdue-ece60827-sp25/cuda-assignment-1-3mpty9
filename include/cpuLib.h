@@ -17,7 +17,7 @@
 
 	extern void dbprintf(const char* fmt...);
 
-
+	//extern void intVectorInit(int* v, int size);
 	extern void vectorInit(float* v, int size);
 	extern int verifyVector(float* a, float* b, float* c, float scale, int size);
 	extern void printVector(float* v, int size);
