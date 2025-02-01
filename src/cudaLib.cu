@@ -196,8 +196,17 @@ double estimatePi(uint64_t generateThreadCount, uint64_t sampleSize,
 	cudaMalloc(&d_pSums, pSumsBytes);
 	cudaMalloc(&d_totals, totalsBytes);
 
-	generatePoints<<<(generateThreadCount + 255) / 256, 256>>>(d_pSums, generateThreadCount, sampleSize);
-	reduceCounts<<<(reduceThreadCount + 255) / 256, 256>>>(d_pSums, d_totals, generateThreadCount, reduceSize);
+	int threadsPerBlock = 256;
+    int generateBlocksPerGrid =
+            (generateThreadCount + threadsPerBlock - 1) / threadsPerBlock;
+
+	generatePoints<<<generateBlocksPerGrid, threadsPerBlock>>>(d_pSums, generateThreadCount, sampleSize);
+
+	int reduceBlocksPerGrid =
+            (reduceThreadCount + threadsPerBlock - 1) / threadsPerBlock;	
+
+	reduceCounts<<<reduceBlocksPerGrid, threadsPerBlock>>>(d_pSums, d_totals, generateThreadCount, reduceSize);
+
 
 	uint64_t *h_totals = (uint64_t*)malloc(totalsBytes);
 	cudaMemcpy(h_totals, d_totals, totalsBytes, cudaMemcpyDeviceToHost);
